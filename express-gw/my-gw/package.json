@@ -1,0 +1,14 @@
+{
+  "name": "my-gw",
+  "description": "Express Gateway Instance Bootstraped from Command Line",
+  "repository": {},
+  "license": "UNLICENSED",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express-gateway": "^1.16.11",
+    "express-session": "^1.18.0",
+    "keycloak-connect": "^25.0.6"
+  }
+}

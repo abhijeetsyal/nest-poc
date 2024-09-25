@@ -1,0 +1,37 @@
+http:
+  port: 8081
+
+admin:
+  port: 9876
+  host: localhost
+
+apiEndpoints:
+  api:
+    host: localhost
+    paths: '/api/*'
+
+serviceEndpoints:
+  nestService:
+    url: 'http://localhost:3005'
+
+policies:
+  - keycloak
+  - proxy
+
+pipelines:
+  default:
+    apiEndpoints:
+      - api
+    policies:
+      - keycloak:
+          - action:
+              realm: 'astro'
+              client_id: 'myclient'
+              secret: 'Rwwhxnf2hPfmEY4Qw8OjPeKUYy1Ao5Rf'
+              auth-server-url: 'http://localhost:8080'
+              credentials:
+                secret: 'Rwwhxnf2hPfmEY4Qw8OjPeKUYy1Ao5Rf'
+      - proxy:
+          - action:
+              serviceEndpoint: nestService
+              changeOrigin: true

@@ -1,0 +1,38 @@
+{
+    "version": 3,
+    "port": 8080,
+    "log_level": "DEBUG",
+    "endpoints": [
+      {
+        "endpoint": "/api/protected",
+        "method": "GET",
+        "backend": [
+          {
+            "host": ["http://host.docker.internal:3005"],
+            "url_pattern": "/protected"
+          }
+        ],
+        "extra_config": {
+          "auth/validator": {
+            "alg": "RS256",
+            "typ":"JWT",
+            "jwk_url": "http://host.docker.internal:8080/realms/astro/protocol/openid-connect/certs",
+            "disable_jwk_security": true,
+            "roles_key": "resource_access.realm-management.roles",
+            "roles": ["realm-admin","view-users"],
+            "cache": true
+          },
+          "auth/oauth2-client": {
+            "auth_url": "http://host.docker.internal:8080/realms/astro/protocol/openid-connect/auth",
+            "token_url": "http://host.docker.internal:8080/realms/astro/protocol/openid-connect/token",
+            "client_id": "myclient",
+            "client_secret": "Rwwhxnf2hPfmEY4Qw8OjPeKUYy1Ao5Rf",
+            "redirect_uri": "http://host.docker.internal:8084/api/protected",
+            "scope": "openid",
+            "disable_ssl": true
+          }
+        }
+      }
+    ]
+  }
+  

@@ -1,0 +1,11 @@
+{
+    "realm": "astro",
+    "auth-server-url": "http://localhost:8080",
+    "ssl-required": "none",
+    "resource": "myclient",
+    "credentials": {
+      "secret": "Rwwhxnf2hPfmEY4Qw8OjPeKUYy1Ao5Rf"
+    },
+    "confidential-port": 0
+  }
+  
